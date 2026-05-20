@@ -11,17 +11,17 @@ import (
 	"os"
 	"time"
 
-	"github.com/jackc/pgx/v5/pgxpool"
 	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
 	"github.com/influxdata/influxdb-client-go/v2/api"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Target struct {
-	ID             string
-	UserID         string
-	Name           string
-	URL            string
-	ExpectedStatus int
+	ID             string `json:"id"`
+	UserID         string `json:"user_id"`
+	Name           string `json:"name"`
+	URL            string `json:"url"`
+	ExpectedStatus int    `json:"expected_status"`
 }
 
 type NotificationConfig struct {
@@ -29,7 +29,12 @@ type NotificationConfig struct {
 	TelegramChatID   string
 }
 
-// Engine execution loop
+type MetricData struct {
+	Time  time.Time   `json:"time"`
+	Field string      `json:"field"`
+	Value interface{} `json:"value"`
+}
+
 func startSaaSMonitor(dbPool *pgxpool.Pool, writeAPI api.WriteAPI) {
 	log.Println("Starting Multi-Tenant Proactive Monitor Engine...")
 	ticker := time.NewTicker(30 * time.Second)
@@ -65,7 +70,7 @@ func fetchAndCheckTargets(dbPool *pgxpool.Pool, writeAPI api.WriteAPI) {
 		targets = append(targets, t)
 	}
 
-	// Fetch notification configs in a map mapped by user_id
+	// Fetch notification configs
 	configRows, err := dbPool.Query(ctx, "SELECT user_id, telegram_bot_token, telegram_chat_id FROM public.notification_configs")
 	if err != nil {
 		log.Printf("Failed to fetch notification configs: %v\n", err)
@@ -93,7 +98,7 @@ func fetchAndCheckTargets(dbPool *pgxpool.Pool, writeAPI api.WriteAPI) {
 
 			if err != nil || statusCode != target.ExpectedStatus {
 				log.Printf("[ALERT] Target %s (%s) down or failing! Status: %d, Err: %v\n", target.Name, target.URL, statusCode, err)
-				msg := fmt.Sprintf("\u26A0\uFE0F *Alert for %s*\nURL: %s\nExpected: %d\nReceived: %d\nError: %v", target.Name, target.URL, target.ExpectedStatus, statusCode, err)
+				msg := fmt.Sprintf("⚠️ *Alert for %s*\nURL: %s\nExpected: %d\nReceived: %d\nError: %v", target.Name, target.URL, target.ExpectedStatus, statusCode, err)
 				
 				// Send alert using the user's specific Telegram config
 				if conf.TelegramBotToken != "" && conf.TelegramChatID != "" {
@@ -180,6 +185,101 @@ func sendCustomTelegramAlert(botToken, chatID, message string) {
 	}
 }
 
+// startAPI initializes the REST endpoints
+func startAPI(dbPool *pgxpool.Pool, influxClient influxdb2.Client) {
+	// GET /api/targets
+	http.HandleFunc("/api/targets", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+
+		userID := r.URL.Query().Get("user_id")
+		if userID == "" {
+			http.Error(w, "Query parameter 'user_id' is required", http.StatusBadRequest)
+			return
+		}
+
+		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cancel()
+
+		rows, err := dbPool.Query(ctx, "SELECT id, user_id, name, url, expected_status FROM public.targets WHERE user_id = $1", userID)
+		if err != nil {
+			log.Printf("Failed to fetch user targets: %v\n", err)
+			http.Error(w, "Database query failed", http.StatusInternalServerError)
+			return
+		}
+		defer rows.Close()
+
+		var targets []Target = []Target{}
+		for rows.Next() {
+			var t Target
+			if err := rows.Scan(&t.ID, &t.UserID, &t.Name, &t.URL, &t.ExpectedStatus); err != nil {
+				continue
+			}
+			targets = append(targets, t)
+		}
+
+		json.NewEncoder(w).Encode(targets)
+	})
+
+	// GET /api/metrics/latency
+	http.HandleFunc("/api/metrics/latency", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+
+		userID := r.URL.Query().Get("user_id")
+		targetID := r.URL.Query().Get("target_id")
+
+		if userID == "" || targetID == "" {
+			http.Error(w, "Query parameters 'user_id' and 'target_id' are required", http.StatusBadRequest)
+			return
+		}
+
+		org := os.Getenv("INFLUXDB_ORG")
+		bucket := os.Getenv("INFLUXDB_BUCKET")
+		queryAPI := influxClient.QueryAPI(org)
+
+		// Flux query to fetch recent metrics across fields, filtered by BOTH user_id and target_id
+		query := fmt.Sprintf(`
+			from(bucket:"%s")
+				|> range(start: -1h)
+				|> filter(fn: (r) => r._measurement == "http_check")
+				|> filter(fn: (r) => r.user_id == "%s")
+				|> filter(fn: (r) => r.target_id == "%s")
+				|> filter(fn: (r) => r._field == "latency_ms" or r._field == "ssl_days_remaining" or r._field == "status_code")
+				|> yield(name: "results")
+		`, bucket, userID, targetID)
+
+		result, err := queryAPI.Query(context.Background(), query)
+		if err != nil {
+			log.Printf("Query error: %v\n", err)
+			http.Error(w, "Database query failed", http.StatusInternalServerError)
+			return
+		}
+
+		var metrics []MetricData = []MetricData{}
+		for result.Next() {
+			metrics = append(metrics, MetricData{
+				Time:  result.Record().Time(),
+				Field: result.Record().Field(),
+				Value: result.Record().Value(),
+			})
+		}
+
+		if result.Err() != nil {
+			log.Printf("Parsing error: %v\n", result.Err())
+			http.Error(w, "Failed parsing database stream", http.StatusInternalServerError)
+			return
+		}
+
+		json.NewEncoder(w).Encode(metrics)
+	})
+
+	log.Println("Starting REST API on :8080")
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatalf("API Server crash: %v", err)
+	}
+}
+
 func main() {
 	log.Println("Initializing Multi-Tenant Proactive Infrastructure Monitor")
 
@@ -213,9 +313,9 @@ func main() {
 	writeAPI := client.WriteAPI(org, bucket)
 	defer writeAPI.Flush()
 
-	// Start Engine Loop
-	startSaaSMonitor(dbPool, writeAPI)
+	// 3. Start Engine Loop
+	go startSaaSMonitor(dbPool, writeAPI)
 
-	// Keep alive
-	select {}
+	// 4. Start REST API
+	startAPI(dbPool, client)
 }

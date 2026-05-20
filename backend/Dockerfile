@@ -7,7 +7,7 @@ RUN go mod tidy
 
 COPY . .
 # We build specifying the files directly for the binary
-RUN CGO_ENABLED=0 GOOS=linux go build -o monitor_binary monitor.go api.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o monitor_binary main.go
 
 FROM alpine:latest
 RUN apk --no-cache add ca-certificates tzdata
