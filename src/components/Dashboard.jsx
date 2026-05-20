@@ -3,8 +3,10 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianG
 import { format, parseISO } from 'date-fns';
 import { Activity, ShieldCheck, Clock, Server, Plus, Settings, LogOut, CheckCircle2 } from 'lucide-react';
 import { supabase } from '../supabaseClient';
+import { useTranslation } from 'react-i18next';
 
 export default function Dashboard({ session }) {
+  const { t } = useTranslation();
   const [targets, setTargets] = useState([]);
   const [selectedTarget, setSelectedTarget] = useState(null);
   const [metrics, setMetrics] = useState([]);
@@ -78,7 +80,7 @@ export default function Dashboard({ session }) {
       setExpectedStatus(200);
       fetchTargets();
     } else {
-      alert("Error adding target: " + error.message);
+      alert(t('errorAddTarget') + error.message);
     }
   };
 
@@ -91,9 +93,9 @@ export default function Dashboard({ session }) {
       updated_at: new Date().toISOString()
     });
     if (!error) {
-      alert("Alert configuration successfully synched.");
+      alert(t('alertConfigSaved'));
     } else {
-      alert("Error saving config: " + error.message);
+      alert(t('errorSaveConfig') + error.message);
     }
   };
 
@@ -115,12 +117,12 @@ export default function Dashboard({ session }) {
           <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/20">
             <Activity className="w-4 h-4" />
           </div>
-          <h1 className="font-bold text-white tracking-tight">SaaS Dashboard</h1>
+          <h1 className="font-bold text-white tracking-tight">{t('dashboardHeader')}</h1>
         </div>
         <div className="flex items-center gap-6 text-sm">
           <span className="text-slate-400">{session.user.email}</span>
           <button onClick={() => supabase.auth.signOut()} className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
-            <LogOut className="w-4 h-4" /> Exit
+            <LogOut className="w-4 h-4" /> {t('exit')}
           </button>
         </div>
       </header>
@@ -133,11 +135,11 @@ export default function Dashboard({ session }) {
           {/* Target List */}
           <div className="bg-slate-900 rounded-xl border border-white/5 overflow-hidden">
             <div className="px-5 py-4 border-b border-white/5 bg-slate-900/50">
-              <h3 className="font-semibold text-white flex items-center gap-2"><Server className="w-4 h-4 text-emerald-400"/> Active Endpoints</h3>
+              <h3 className="font-semibold text-white flex items-center gap-2"><Server className="w-4 h-4 text-emerald-400"/> {t('activeEndpoints')}</h3>
             </div>
             <div className="divide-y divide-white/5 max-h-64 overflow-y-auto custom-scrollbar">
               {targets.length === 0 ? (
-                <div className="p-6 text-center text-sm text-slate-500">No endpoints defined.</div>
+                <div className="p-6 text-center text-sm text-slate-500">{t('noEndpoints')}</div>
               ) : (
                 targets.map(t => (
                   <button 
@@ -158,30 +160,30 @@ export default function Dashboard({ session }) {
             {/* Add Target */}
             <form onSubmit={handleAddTarget} className="space-y-4">
               <h3 className="font-semibold text-white flex items-center gap-2 border-b border-white/5 pb-2">
-                <Plus className="w-4 h-4 text-indigo-400"/> Add Monitoring Target
+                <Plus className="w-4 h-4 text-indigo-400"/> {t('addTargetTitle')}
               </h3>
               <div className="grid grid-cols-1 gap-3">
-                <input required placeholder="Service Name (e.g., Auth API)" value={newTargetName} onChange={e => setNewTargetName(e.target.value)} className="bg-slate-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" />
-                <input required type="url" placeholder="Endpoint URL (https://...)" value={newTargetUrl} onChange={e => setNewTargetUrl(e.target.value)} className="bg-slate-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" />
+                <input required placeholder={t('serviceNameField')} value={newTargetName} onChange={e => setNewTargetName(e.target.value)} className="bg-slate-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" />
+                <input required type="url" placeholder={t('endpointUrlField')} value={newTargetUrl} onChange={e => setNewTargetUrl(e.target.value)} className="bg-slate-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" />
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-slate-500 shrink-0">Expected Status:</span>
+                  <span className="text-xs text-slate-500 shrink-0">{t('expectedStatus')}</span>
                   <input required type="number" value={expectedStatus} onChange={e => setExpectedStatus(e.target.value)} className="bg-slate-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500 w-full" />
                 </div>
               </div>
-              <button type="submit" className="w-full bg-white text-slate-900 font-semibold text-sm py-2 rounded-lg hover:bg-slate-200 transition-colors shadow-lg">Save Endpoint</button>
+              <button type="submit" className="w-full bg-white text-slate-900 font-semibold text-sm py-2 rounded-lg hover:bg-slate-200 transition-colors shadow-lg">{t('saveEndpoint')}</button>
             </form>
 
             {/* Config Alerts */}
             <form onSubmit={handleSaveConfig} className="space-y-4">
               <h3 className="font-semibold text-white flex items-center gap-2 border-b border-white/5 pb-2">
-                <Settings className="w-4 h-4 text-amber-400"/> Telegram Pipeline Override
+                <Settings className="w-4 h-4 text-amber-400"/> {t('telegramOverrideTitle')}
               </h3>
-              <p className="text-xs text-slate-500 pb-1">Define your custom Bot token to receive out-of-band pager alerts completely isolated from other tenants.</p>
+              <p className="text-xs text-slate-500 pb-1">{t('telegramOverrideDesc')}</p>
               <div className="grid grid-cols-1 gap-3">
-                <input placeholder="Telegram Bot Token" value={botToken} onChange={e => setBotToken(e.target.value)} className="bg-slate-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" />
-                <input placeholder="Target Chat ID" value={chatId} onChange={e => setChatId(e.target.value)} className="bg-slate-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" />
+                <input placeholder={t('botTokenField')} value={botToken} onChange={e => setBotToken(e.target.value)} className="bg-slate-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" />
+                <input placeholder={t('chatIdField')} value={chatId} onChange={e => setChatId(e.target.value)} className="bg-slate-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" />
               </div>
-              <button type="submit" className="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm py-2 rounded-lg transition-colors border border-white/5">Sync Configuration</button>
+              <button type="submit" className="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm py-2 rounded-lg transition-colors border border-white/5">{t('syncConfig')}</button>
             </form>
           </div>
 
@@ -195,22 +197,22 @@ export default function Dashboard({ session }) {
                 {/* 4 Summary Cards */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="bg-slate-900 border border-white/5 p-4 rounded-xl shadow-inner">
-                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2"><Clock className="w-4 h-4"/> Latency (ms)</div>
+                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2"><Clock className="w-4 h-4"/> {t('latencyLabel')}</div>
                     <div className="text-3xl font-light text-white">{latestLatency}</div>
                   </div>
                   <div className="bg-slate-900 border border-white/5 p-4 rounded-xl shadow-inner">
-                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2"><ShieldCheck className="w-4 h-4"/> SSL Validity</div>
-                    <div className={`text-3xl font-light ${latestSSL < 14 ? 'text-amber-400' : 'text-emerald-400'}`}>{latestSSL} <span className="text-sm font-normal text-slate-500">days</span></div>
+                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2"><ShieldCheck className="w-4 h-4"/> {t('sslValidityLabel')}</div>
+                    <div className={`text-3xl font-light ${latestSSL < 14 ? 'text-amber-400' : 'text-emerald-400'}`}>{latestSSL} <span className="text-sm font-normal text-slate-500">{t('days')}</span></div>
                   </div>
                   <div className="bg-slate-900 border border-white/5 p-4 rounded-xl shadow-inner">
-                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2"><Activity className="w-4 h-4"/> HTTP Status</div>
+                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2"><Activity className="w-4 h-4"/> {t('httpStatusLabel')}</div>
                     <div className={`text-3xl font-light flex items-center gap-2 ${isHealthy ? 'text-emerald-400' : 'text-red-400'}`}>
                       {latestStatus || '--'}
                       {isHealthy ? <CheckCircle2 className="w-5 h-5 opacity-50"/> : null}
                     </div>
                   </div>
                   <div className="bg-slate-900 border border-white/5 p-4 rounded-xl shadow-inner flex flex-col justify-center overflow-hidden">
-                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Target Identity</div>
+                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">{t('targetIdentity')}</div>
                     <div className="text-sm font-medium text-indigo-400 truncate w-full" title={selectedTarget.name}>{selectedTarget.name}</div>
                     <div className="text-[10px] text-slate-500 mt-1 uppercase truncate font-mono">ID: {selectedTarget.id}</div>
                   </div>
@@ -220,11 +222,11 @@ export default function Dashboard({ session }) {
                 <div className="bg-slate-900 border border-white/5 rounded-xl flex flex-col flex-1 shadow-2xl overflow-hidden min-h-[400px]">
                   <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between bg-slate-900/50 shrink-0">
                     <div className="overflow-hidden">
-                      <h2 className="font-semibold text-white">Global Latency Distribution</h2>
+                      <h2 className="font-semibold text-white">{t('globalLatency')}</h2>
                       <p className="text-xs text-slate-500 tracking-wide mt-1 font-mono truncate max-w-lg">{selectedTarget.url}</p>
                     </div>
                     <div className="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-md text-xs font-semibold uppercase tracking-wider border border-indigo-500/20 whitespace-nowrap">
-                      Live Stream
+                      {t('liveStream')}
                     </div>
                   </div>
                   
@@ -271,8 +273,8 @@ export default function Dashboard({ session }) {
              <div className="h-full min-h-[500px] flex items-center justify-center border-2 border-dashed border-white/5 rounded-xl bg-slate-900/30">
                <div className="text-center">
                  <Server className="w-12 h-12 text-slate-700 mx-auto mb-4" />
-                 <h3 className="text-lg font-medium text-slate-300">No Service Selected</h3>
-                 <p className="text-sm text-slate-500 mt-2">Create an endpoint in the panel or select an existing target to render metrics.</p>
+                 <h3 className="text-lg font-medium text-slate-300">{t('noServiceSelected')}</h3>
+                 <p className="text-sm text-slate-500 mt-2">{t('noServiceDesc')}</p>
                </div>
              </div>
           )}
