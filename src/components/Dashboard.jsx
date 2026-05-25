@@ -23,12 +23,23 @@ export default function Dashboard({ session }) {
   const fetchTargets = async () => {
     try {
       const res = await fetch(`${API_BASE}/api/targets?user_id=${session.user.id}`);
-      if (!res.ok) throw new Error('Failed to fetch targets');
+      if (!res.ok) throw new Error(`Go API returned status ${res.status}`);
       const data = await res.json();
-      setTargets(data || []);
-      if (!selectedTarget && data && data.length > 0) setSelectedTarget(data[0]);
+      
+      if (Array.isArray(data)) {
+        setTargets(data);
+        // Optimize: Only set selectedTarget if we don't have one, or if it was removed
+        setSelectedTarget(prev => {
+          if (!prev && data.length > 0) return data[0];
+          if (prev && !data.find(t => t.id === prev.id) && data.length > 0) return data[0];
+          return prev;
+        });
+      } else {
+        console.warn('Go API returned non-array data:', data);
+        setTargets([]);
+      }
     } catch(e) {
-      console.error(e);
+      console.error('Error in fetchTargets:', e);
     }
   };
 
@@ -48,6 +59,9 @@ export default function Dashboard({ session }) {
   useEffect(() => {
     if (!selectedTarget) return;
     
+    // Clear metrics when target changes while loading new ones
+    setMetrics([]);
+
     const fetchMetrics = async () => {
       try {
         const res = await fetch(`${API_BASE}/api/metrics/latency?user_id=${session.user.id}&target_id=${selectedTarget.id}`);
@@ -56,7 +70,7 @@ export default function Dashboard({ session }) {
           setMetrics(Array.isArray(data) ? data : []);
         }
       } catch(e) {
-        console.error(e);
+        console.error('Error fetching metrics:', e);
       }
     };
 
@@ -67,20 +81,26 @@ export default function Dashboard({ session }) {
 
   const handleAddTarget = async (e) => {
     e.preventDefault();
-    const { error } = await supabase.from('targets').insert({
+    const { data: newTarget, error } = await supabase.from('targets').insert({
       user_id: session.user.id,
       name: newTargetName,
       url: newTargetUrl,
       expected_status: parseInt(expectedStatus, 10)
-    });
+    }).select().single();
     
-    if (!error) {
+    if (!error && newTarget) {
       setNewTargetName('');
       setNewTargetUrl('');
       setExpectedStatus(200);
+      
+      // Optimitstic update
+      setTargets(prev => [...prev, newTarget]);
+      setSelectedTarget(newTarget);
+
+      // Async sync from Go API to be sure we are up to date
       fetchTargets();
     } else {
-      alert(t('errorAddTarget') + error.message);
+      alert(t('errorAddTarget') + (error?.message || 'Unknown error'));
     }
   };
 
@@ -108,6 +128,7 @@ export default function Dashboard({ session }) {
   const latestSSL = metrics.filter(m => m.field === 'ssl_days_remaining').pop()?.value || 0;
   const latestStatus = metrics.filter(m => m.field === 'status_code').pop()?.value || 0;
   const isHealthy = latestStatus >= 200 && latestStatus < 400;
+  const isHttps = selectedTarget?.url?.startsWith('https');
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-indigo-500/30">
@@ -120,6 +141,26 @@ export default function Dashboard({ session }) {
           <h1 className="font-bold text-white tracking-tight">{t('dashboardHeader')}</h1>
         </div>
         <div className="flex items-center gap-6 text-sm">
+          <select
+            value={i18n.language}
+            onChange={(e) => i18n.changeLanguage(e.target.value)}
+            className="bg-slate-900 border border-white/10 text-slate-300 text-sm rounded focus:border-indigo-500 focus:ring-indigo-500 block p-1 cursor-pointer outline-none"
+          >
+            <option value="en">English</option>
+            <option value="uk">Українська</option>
+            <option value="es">Español</option>
+            <option value="pt">Português</option>
+            <option value="de">Deutsch</option>
+            <option value="fr">Français</option>
+            <option value="pl">Polski</option>
+            <option value="ja">日本語</option>
+            <option value="ar">العربية</option>
+            <option value="tr">Türkçe</option>
+            <option value="hi">हिन्दी</option>
+            <option value="it">Italiano</option>
+            <option value="ko">한국어</option>
+            <option value="id">Bahasa Indonesia</option>
+          </select>
           <span className="text-slate-400">{session.user.email}</span>
           <button onClick={() => supabase.auth.signOut()} className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
             <LogOut className="w-4 h-4" /> {t('exit')}
@@ -202,7 +243,11 @@ export default function Dashboard({ session }) {
                   </div>
                   <div className="bg-slate-900 border border-white/5 p-4 rounded-xl shadow-inner">
                     <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2"><ShieldCheck className="w-4 h-4"/> {t('sslValidityLabel')}</div>
-                    <div className={`text-3xl font-light ${latestSSL < 14 ? 'text-amber-400' : 'text-emerald-400'}`}>{latestSSL} <span className="text-sm font-normal text-slate-500">{t('days')}</span></div>
+                    {isHttps ? (
+                      <div className={`text-3xl font-light ${latestSSL < 14 ? 'text-amber-400' : 'text-emerald-400'}`}>{latestSSL} <span className="text-sm font-normal text-slate-500">{t('days')}</span></div>
+                    ) : (
+                      <div className="text-xl font-medium text-slate-500 mt-1 uppercase tracking-widest">N/A</div>
+                    )}
                   </div>
                   <div className="bg-slate-900 border border-white/5 p-4 rounded-xl shadow-inner">
                     <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2"><Activity className="w-4 h-4"/> {t('httpStatusLabel')}</div>

@@ -25,7 +25,8 @@ export const resources = {
       latencyLabel: "Latency (ms)", sslValidityLabel: "SSL Validity", days: "days", httpStatusLabel: "HTTP Status",
       targetIdentity: "Target Identity", globalLatency: "Global Latency Distribution", liveStream: "Live Stream",
       noServiceSelected: "No Service Selected", noServiceDesc: "Create an endpoint in the panel or select an existing target to render metrics.",
-      errorAddTarget: "Error adding target: ", alertConfigSaved: "Alert configuration successfully synched.", errorSaveConfig: "Error saving config: "
+      errorAddTarget: "Error adding target: ", alertConfigSaved: "Alert configuration successfully synched.", errorSaveConfig: "Error saving config: ",
+      socialProof: "Trusted by 500+ developers", painPointsTitle: "Why you need proactive monitoring", painPointOld: "The Old Way", painPointNew: "The InfraMonitor Way", oldWay1: "Finding out about downtime from angry customers.", oldWay2: "Staring at dashboards waiting for issues.", oldWay3: "Complex setup taking hours.", newWay1: "Instant alerts via Telegram before customers notice.", newWay2: "Automated 30-second interval polling.", newWay3: "Deploy your first monitor in 30 seconds.", howItWorksTitle: "How it Works in 3 Simple Steps", step1Title: "1. Register", step1Desc: "Create an account in one click and access the dashboard.", step2Title: "2. Add URLs", step2Desc: "Configure your endpoints and expected HTTP status code.", step3Title: "3. Relax", step3Desc: "We'll notify you on Telegram as soon as something breaks.", integrationsTitle: "Seamless Integrations", integrationsDesc: "Currently supporting Telegram for instant notifications, with Discord, Slack, and Webhooks on the roadmap.", faqTitle: "Frequently Asked Questions", faq1Q: "How often are the checks performed?", faq1A: "Our distributed workers ping your endpoints every 30 seconds for precise monitoring.", faq2Q: "Is my data secure?", faq2A: "Yes, we use a secure isolated per-tenant architecture. Your metrics are strictly private.", faq3Q: "How do I configure the Telegram bot?", faq3A: "Simply paste your custom Telegram Bot Token and Chat ID in the settings pane.", footerCopyright: "© 2026 InfraMonitor SaaS. All rights reserved.", footerDoc: "Documentation", footerStatus: "Status", footerPrivacy: "Privacy"
     }
   },
   uk: {
@@ -54,7 +55,8 @@ export const resources = {
       latencyLabel: "Затримка (мс)", sslValidityLabel: "Дійсність SSL", days: "днів", httpStatusLabel: "Статус HTTP",
       targetIdentity: "Ціль", globalLatency: "Глобальний розподіл затримок", liveStream: "Прямий ефір",
       noServiceSelected: "Службу не вибрано", noServiceDesc: "Створіть ендпоінт або виберіть існуючу ціль для відображення графіків.",
-      errorAddTarget: "Помилка додавання цілі: ", alertConfigSaved: "Конфігурація сповіщень успішно збережена.", errorSaveConfig: "Помилка збереження конфігурації: "
+      errorAddTarget: "Помилка додавання цілі: ", alertConfigSaved: "Конфігурація сповіщень успішно збережена.", errorSaveConfig: "Помилка збереження конфігурації: ",
+      socialProof: "Нам довіряють понад 500 розробників", painPointsTitle: "Чому вам потрібен проактивний моніторинг", painPointOld: "Старий спосіб", painPointNew: "Підхід InfraMonitor", oldWay1: "Дізнаватись про падіння від розлючених клієнтів.", oldWay2: "Дивитись у дашборди в очікуванні проблем.", oldWay3: "Складне налаштування, що займає години.", newWay1: "Миттєві сповіщення в Telegram до того, як помітять клієнти.", newWay2: "Автоматизоване опитування кожні 30 секунд.", newWay3: "Розгортання першого монітора за 30 секунд.", howItWorksTitle: "Як це працює: 3 прості кроки", step1Title: "1. Реєстрація", step1Desc: "Створіть обліковий запис у лічені секунди.", step2Title: "2. Додайте URL", step2Desc: "Налаштуйте ваші ендпоінти та очікувані HTTP коди.", step3Title: "3. Спокій", step3Desc: "Ми сповістимо вас у Telegram, якщо щось піде не так.", integrationsTitle: "Зручні інтеграції", integrationsDesc: "Наразі повністю підтримується Telegram. Discord, Slack та Webhooks — у планах.", faqTitle: "Часті питання", faq1Q: "Як часто виконуються перевірки?", faq1A: "Наші воркери пінгують ваші ендпоінти кожні 30 секунд.", faq2Q: "Чи в безпеці мої дані?", faq2A: "Так, ми використовуємо ізольовану архітектуру. Ваші метрики суворо конфіденційні.", faq3Q: "Як налаштувати бота Telegram?", faq3A: "Введіть власний токен Telegram-бота та Chat ID у панелі налаштувань.", footerCopyright: "© 2026 InfraMonitor SaaS. Усі права захищено.", footerDoc: "Документація", footerStatus: "Статус", footerPrivacy: "Конфіденційність"
     }
   },
   es: {
@@ -82,7 +84,8 @@ export const resources = {
       chatIdField: "ID de Chat", syncConfig: "Sincronizar", latencyLabel: "Latencia (ms)", sslValidityLabel: "Validez SSL",
       days: "días", httpStatusLabel: "Estado HTTP", targetIdentity: "Objetivo", globalLatency: "Latencia Global",
       liveStream: "En directo", noServiceSelected: "Ningún Servicio Seleccionado", noServiceDesc: "Selecciona para ver métricas.",
-      errorAddTarget: "Error al añadir: ", alertConfigSaved: "Configurada con éxito.", errorSaveConfig: "Error guardando: "
+      errorAddTarget: "Error al añadir: ", alertConfigSaved: "Configurada con éxito.", errorSaveConfig: "Error guardando: ",
+      socialProof: "Confiado por más de 500 desarrolladores", painPointsTitle: "Por qué necesitas monitoreo proactivo", painPointOld: "La forma antigua", painPointNew: "El estilo InfraMonitor", oldWay1: "Enterarse de caídas por clientes enojados.", oldWay2: "Mirar dashboards esperando problemas.", oldWay3: "Configuraciones complejas de horas.", newWay1: "Alertas instantáneas vía Telegram antes de que los clientes lo noten.", newWay2: "Monitoreo automatizado cada 30 segundos.", newWay3: "Despliega tu primer monitor en 30 segundos.", howItWorksTitle: "Cómo funciona en 3 simples pasos", step1Title: "1. Registrar", step1Desc: "Crea tu cuenta con un clic y accede al panel.", step2Title: "2. Añadir URLs", step2Desc: "Configura tus endpoints y los códigos HTTP esperados.", step3Title: "3. Relajarse", step3Desc: "Te avisaremos por Telegram si algo falla.", integrationsTitle: "Integraciones sin fisuras", integrationsDesc: "Soportamos Telegram para alertas instantáneas. Discord, Slack y Webhooks en camino.", faqTitle: "Preguntas Frecuentes", faq1Q: "¿Con qué frecuencia se comprueban los sitios?", faq1A: "Nuestros workers globales hacen pings cada 30 segundos.", faq2Q: "¿Están seguros mis datos?", faq2A: "Sí, usamos una arquitectura segura por inquilino.", faq3Q: "¿Cómo configuro el bot de Telegram?", faq3A: "Copia tu Token de Telegram y el ID del chat en ajustes.", footerCopyright: "© 2026 InfraMonitor SaaS. Todos los derechos.", footerDoc: "Documentos", footerStatus: "Estado", footerPrivacy: "Privacidad"
     }
   },
   pt: {
@@ -110,7 +113,8 @@ export const resources = {
         chatIdField: "ID do Chat", syncConfig: "Sincronizar", latencyLabel: "Latência (ms)", sslValidityLabel: "Validade SSL",
         days: "dias", httpStatusLabel: "Status HTTP", targetIdentity: "Endpoint", globalLatency: "Latência Global",
         liveStream: "Ao Vivo", noServiceSelected: "Nenhum selecionado", noServiceDesc: "Selecione para visualizar.",
-        errorAddTarget: "Erro: ", alertConfigSaved: "Salva.", errorSaveConfig: "Erro: "
+        errorAddTarget: "Erro: ", alertConfigSaved: "Salva.", errorSaveConfig: "Erro: ",
+        socialProof: "De confiança de 500+ desenvolvedores", painPointsTitle: "Por que você precisa de monitoramento proativo", painPointOld: "O jeito antigo", painPointNew: "O jeito InfraMonitor", oldWay1: "Descobrir quedas através de clientes irritados.", oldWay2: "Ficar olhando dashboards esperando erros.", oldWay3: "Setup complexo e demorado.", newWay1: "Alertas instantâneos via Telegram antes que clientes percebam.", newWay2: "Verificações automáticas a cada 30 segundos.", newWay3: "Crie o primeiro monitor em 30 segundos.", howItWorksTitle: "Como Funciona em 3 Passos", step1Title: "1. Registrar", step1Desc: "Crie sua conta em segundos e acesse o painel.", step2Title: "2. Adicionar URLs", step2Desc: "Configure seus endpoints e status esperados.", step3Title: "3. Relaxar", step3Desc: "Avisaremos no Telegram assim que algo falhar.", integrationsTitle: "Integrações Fluidas", integrationsDesc: "Já suportamos Telegram. Discord, Slack e Webhooks em breve.", faqTitle: "Dúvidas Frequentes", faq1Q: "Com que frequência ocorrem os checks?", faq1A: "Distribuímos verificações a cada 30 segundos.", faq2Q: "Meus dados são seguros?", faq2A: "Sim, arquitetura isolada mantendo privacidade.", faq3Q: "Como configuro meu bot?", faq3A: "Cole seu bot token e Chat ID nas configurações.", footerCopyright: "© 2026 InfraMonitor SaaS. Direitos reservados.", footerDoc: "Docs", footerStatus: "Status", footerPrivacy: "Privacidade"
     }
   },
   de: {
@@ -138,7 +142,8 @@ export const resources = {
         chatIdField: "Chat-ID", syncConfig: "Synchronisieren", latencyLabel: "Latenz (ms)", sslValidityLabel: "SSL-Gültigkeit",
         days: "Tage", httpStatusLabel: "HTTP-Status", targetIdentity: "Zielidentität", globalLatency: "Globale Latenzverteilung",
         liveStream: "Live", noServiceSelected: "Kein Dienst", noServiceDesc: "Ziel auswählen oder erstellen.",
-        errorAddTarget: "Fehler: ", alertConfigSaved: "Gespeichert.", errorSaveConfig: "Fehler: "
+        errorAddTarget: "Fehler: ", alertConfigSaved: "Gespeichert.", errorSaveConfig: "Fehler: ",
+        socialProof: "Das Vertrauen von 500+ Entwicklern", painPointsTitle: "Warum Sie proaktives Monitoring brauchen", painPointOld: "Der alte Weg", painPointNew: "Der InfraMonitor Weg", oldWay1: "Durch wütende Kunden von Ausfällen erfahren.", oldWay2: "Dashboards anstarren und warten.", oldWay3: "Kompliziertes, stundenlanges Setup.", newWay1: "Telegram-Alarme bevor Kunden etwas merken.", newWay2: "Automatische Abfragen alle 30 Sekunden.", newWay3: "Rollen Sie Ihren ersten Monitor in 30 Sekunden aus.", howItWorksTitle: "Wie es in 3 Schritten funktioniert", step1Title: "1. Registrieren", step1Desc: "Mit einem Klick anmelden.", step2Title: "2. URLs hinzufügen", step2Desc: "Endpunkte und gewünschten Status konfigurieren.", step3Title: "3. Entspannen", step3Desc: "Wir pingen Sie an wenn etwas bricht.", integrationsTitle: "Nahtlose Integration", integrationsDesc: "Aktuell Telegram unterstützt, Discord und co. in Arbeit.", faqTitle: "Häufige Fragen", faq1Q: "Wie oft prüfen Sie?", faq1A: "Alle 30 Sekunden mit unseren Go-Wokern.", faq2Q: "Sind meine Daten sicher?", faq2A: "Komplett isolierte Systeme pro Mandant.", faq3Q: "Wie richte ich den Bot ein?", faq3A: "Telegram Bot Token & Chat ID reinkopieren.", footerCopyright: "© 2026 InfraMonitor SaaS. Alle Rechte.", footerDoc: "Doku", footerStatus: "Status", footerPrivacy: "Datenschutz"
     }
   },
   fr: {
@@ -166,7 +171,8 @@ export const resources = {
         chatIdField: "ID de la conversation", syncConfig: "Synchroniser", latencyLabel: "Latence (ms)", sslValidityLabel: "Validité SSL",
         days: "jours", httpStatusLabel: "Statut HTTP", targetIdentity: "Cible", globalLatency: "Latence globale",
         liveStream: "En direct", noServiceSelected: "Aucun sélectionné", noServiceDesc: "Sélectionnez pour voir.",
-        errorAddTarget: "Erreur: ", alertConfigSaved: "Sauvegardé.", errorSaveConfig: "Erreur: "
+        errorAddTarget: "Erreur: ", alertConfigSaved: "Sauvegardé.", errorSaveConfig: "Erreur: ",
+        socialProof: "Approuvé par plus de 500 développeurs", painPointsTitle: "Pourquoi vous avez besoin d'une surveillance proactive", painPointOld: "L'ancienne méthode", painPointNew: "La méthode InfraMonitor", oldWay1: "Apprendre les pannes via des clients en colère.", oldWay2: "Regarder des tableaux de bord en attendant.", oldWay3: "Configuration complexe prenant des heures.", newWay1: "Alertes Telegram avant que le client remarque.", newWay2: "Sondage automatique toutes les 30 secondes.", newWay3: "Déployez un moniteur en 30 secondes.", howItWorksTitle: "Fonctionnement en 3 Etapes", step1Title: "1. Inscription", step1Desc: "Créez votre compte.", step2Title: "2. Ajoutez des URLs", step2Desc: "Ciblez vos URLs et statuts.", step3Title: "3. Se détendre", step3Desc: "On s'occupe des pannes avec Telegram.", integrationsTitle: "Intégrations Transparentes", integrationsDesc: "Telegram actif, Discord/Webhooks arrivent.", faqTitle: "Questions Fréquentes", faq1Q: "A quelle fréquence surveillez-vous ?", faq1A: "Toutes les 30 secondes via nos agents distribués.", faq2Q: "Mes données sont-elles sûres ?", faq2A: "L'architecture isolée est notre priorité.", faq3Q: "Comment lier Telegram ?", faq3A: "Ajoutez juste le Bot token et Chat ID.", footerCopyright: "© 2026 InfraMonitor SaaS.", footerDoc: "Doc", footerStatus: "Statut", footerPrivacy: "Confidentialité"
     }
   },
   pl: {
@@ -194,7 +200,8 @@ export const resources = {
         chatIdField: "ID Czatu", syncConfig: "Synchronizuj", latencyLabel: "Opóźnienie(ms)", sslValidityLabel: "Ważność SSL",
         days: "dni", httpStatusLabel: "Status", targetIdentity: "Zasób", globalLatency: "Globalny Rozkład",
         liveStream: "Na żywo", noServiceSelected: "Nic nie wybrano", noServiceDesc: "Wybierz zasób by sprawdzić statystyki.",
-        errorAddTarget: "Błąd: ", alertConfigSaved: "Zapisane.", errorSaveConfig: "Błąd: "
+        errorAddTarget: "Błąd: ", alertConfigSaved: "Zapisane.", errorSaveConfig: "Błąd: ",
+        socialProof: "Zaufanie 500+ programistów", painPointsTitle: "Dlaczego potrzebujesz monitoringu proaktywnego", painPointOld: "Stary Sposób", painPointNew: "Sposób InfraMonitor", oldWay1: "Dowiadywanie się o awariach od klientów.", oldWay2: "Wpatrywanie na puste wykresy.", oldWay3: "Skomplikowana instalacja na godziny.", newWay1: "Natychmiastowe alerty Telegram.", newWay2: "Automatyczny polling co 30 sekund.", newWay3: "Wdróż pierwszy monitor w 30 sek.", howItWorksTitle: "Jak operujemy w 3 krokach", step1Title: "1. Zarejestruj", step1Desc: "Utwórz konto w mgnieniu oka.", step2Title: "2. Dodaj URI", step2Desc: "Skonfiguruj połączenia z HTTP.", step3Title: "3. Zrelaksuj się", step3Desc: "Odpowiadamy awariami na Telegramie.", integrationsTitle: "Bezstykowe Integracje", integrationsDesc: "Wpieramy Telegram. Slack nadchodzi.", faqTitle: "Częste Pytania", faq1Q: "Jak badacie serwery?", faq1A: "Co 30 sekund ping i sprawdzanie.", faq2Q: "Dane są strzeżone?", faq2A: "Tak po wielokroć, separacja.", faq3Q: "Konfig na Telegram?", faq3A: "Wrzuć Token oraz ID.", footerCopyright: "© 2026 InfraMonitor SaaS.", footerDoc: "Dokumentacja", footerStatus: "Serwis", footerPrivacy: "Polisa"
     }
   },
   ja: {
@@ -222,7 +229,8 @@ export const resources = {
         chatIdField: "チャットID", syncConfig: "同期", latencyLabel: "レイテンシ", sslValidityLabel: "SSL",
         days: "日", httpStatusLabel: "HTTPステータス", targetIdentity: "ターゲットID", globalLatency: "ディストリビューション",
         liveStream: "ライブ", noServiceSelected: "未選択", noServiceDesc: "項目を選択してください",
-        errorAddTarget: "エラー: ", alertConfigSaved: "成功", errorSaveConfig: "エラー: "
+        errorAddTarget: "エラー: ", alertConfigSaved: "成功", errorSaveConfig: "エラー: ",
+        socialProof: "500人以上の開発者に信頼されています", painPointsTitle: "プロアクティブな監視が必要な理由", painPointOld: "古い方法", painPointNew: "InfraMonitorの方法", oldWay1: "怒っている顧客からダウンタイムを知らされる。", oldWay2: "問題が起こるのをダッシュボードを見つめて待つ。", oldWay3: "セットアップに何時間もかかる。", newWay1: "顧客が気付く前にTelegram経由で即時アラート。", newWay2: "30秒間隔の自動ポーリング。", newWay3: "30秒で最初のモニターを展開。", howItWorksTitle: "3つの簡単なステップで動作", step1Title: "1. 登録", step1Desc: "1クリックでアカウント作成完了。", step2Title: "2. URLの追加", step2Desc: "エンドポイントと期待されるHTTPステータスを構成します。", step3Title: "3. リラックス", step3Desc: "何かが壊れたらすぐにTelegramでお知らせします。", integrationsTitle: "シームレスな統合", integrationsDesc: "現在インスタント通知用のTelegramをサポート。他のツールも準備中。", faqTitle: "よくある質問", faq1Q: "チェックの頻度は？", faq1A: "30秒ごとにPINGします。", faq2Q: "データは安全？", faq2A: "安全です。完全なアイソレーションがあります。", faq3Q: "ボット構成は？", faq3A: "Tokenを貼るだけです。", footerCopyright: "© 2026 InfraMonitor SaaS.", footerDoc: "ドキュメント", footerStatus: "ステータス", footerPrivacy: "プライバシー"
     }
   },
   ar: {
@@ -250,7 +258,8 @@ export const resources = {
         chatIdField: "معرف المحادثة", syncConfig: "مزامنة البيانات", latencyLabel: "زمن الاستجابة", sslValidityLabel: "صلاحية SSL",
         days: "أيام", httpStatusLabel: "حالة HTTP", targetIdentity: "هدف الاتصال", globalLatency: "الرسم البياني",
         liveStream: "مباشر الآن", noServiceSelected: "لم يتم الاختيار", noServiceDesc: "اختر نقطة لعرض الإحصاءات.",
-        errorAddTarget: "خطأ في الإضافة: ", alertConfigSaved: "تم الحفظ بنجاح.", errorSaveConfig: "تعذر الحفظ: "
+        errorAddTarget: "خطأ في الإضافة: ", alertConfigSaved: "تم الحفظ بنجاح.", errorSaveConfig: "تعذر الحفظ: ",
+        socialProof: "يثق بنا أكثر من 500 مطور", painPointsTitle: "لماذا تحتاج إلى المراقبة الاستباقية", painPointOld: "الطريقة القديمة", painPointNew: "طريقة InfraMonitor", oldWay1: "معرفة توقف الخدمة من غضب العملاء.", oldWay2: "التحديق في اللوحات في انتظار المشاكل.", oldWay3: "إعداد معقد يستغرق ساعات.", newWay1: "تنبيهات عبر تيليجرام قبل ملاحظة العملاء.", newWay2: "استعلام آلي كل 30 ثانية.", newWay3: "انشر مراقبك الأول في 30 ثانية.", howItWorksTitle: "كيف يعمل في 3 خطوات بسيطة", step1Title: "1. التسجيل", step1Desc: "قم بإنشاء حساب بنقرة واحدة وادخل إلى اللوحة.", step2Title: "2. إضافة عناوين", step2Desc: "قم بإعداد نقاط النهاية وحالة HTTP.", step3Title: "3. استرخي", step3Desc: "سنقوم بتنبيهك على تيليجرام.", integrationsTitle: "تكامل سلس", integrationsDesc: "ندعم تيليجرام بالإشعارات، ونعمل على القادم.", faqTitle: "أسئلة مكررة", faq1Q: "كم معدل الفحص؟", faq1A: "يتم الفحص كل ٣٠ ثانية من سيرفراتنا.", faq2Q: "هل بياناتي آمنة؟", faq2A: "نعم، آمنة ومفصولة تماماً.", faq3Q: "كيف اربط تيليجرام؟", faq3A: "اضع التوكن في الإعدادات المعطاة.", footerCopyright: "© 2026 InfraMonitor SaaS.", footerDoc: "التوثيق", footerStatus: "الحالة", footerPrivacy: "الخصوصية"
     }
   },
   tr: {
@@ -278,7 +287,8 @@ export const resources = {
         chatIdField: "Chat ID", syncConfig: "Senkronize Et", latencyLabel: "Gecikme (ms)", sslValidityLabel: "SSL",
         days: "gün", httpStatusLabel: "Durum", targetIdentity: "Servis", globalLatency: "Küresel Gecikme Dağılımı",
         liveStream: "Canlı", noServiceSelected: "Seçim Yapılmadı", noServiceDesc: "Görüntülemek için hedef seçin.",
-        errorAddTarget: "Hata: ", alertConfigSaved: "Ayarlar Kaydedildi.", errorSaveConfig: "Hata: "
+        errorAddTarget: "Hata: ", alertConfigSaved: "Ayarlar Kaydedildi.", errorSaveConfig: "Hata: ",
+        socialProof: "500'den fazla geliştirici tarafından güveniliyor", painPointsTitle: "Neden proaktif izlemeye ihtiyacınız var?", painPointOld: "Eski Yöntem", painPointNew: "InfraMonitor Yöntemi", oldWay1: "Kesintileri kızgın müşterilerden öğrenmek.", oldWay2: "Sorun çıkacak diye ekran izlemek.", oldWay3: "Saatler süren karmaşık kurulum.", newWay1: "Müşteriler fark etmeden Telegram üzerinden anında uyarı.", newWay2: "Otomatik 30 saniyelik yoklama.", newWay3: "İlk monitörünüzü 30 saniyede dağıtın.", howItWorksTitle: "3 Basit Adımda Nasıl Çalışır", step1Title: "1. Kayıt", step1Desc: "Tek tıkla hesabınızı oluşturun.", step2Title: "2. URL Ekle", step2Desc: "Uç noktalarınızı ve HTTP durumunu yapılandırın.", step3Title: "3. Rahatla", step3Desc: "Telegram üzerinden bildireceğiz.", integrationsTitle: "Kesintisiz Entegrasyonlar", integrationsDesc: "Şu an Telegram destekli. Discord yakında.", faqTitle: "Sık Sorulan Sorular", faq1Q: "Kontroller ne sıklıkla yapılır?", faq1A: "Dağıtık çalışanlarımız sistemleri 30 sn'de bir pingler.", faq2Q: "Verilerim güvende mi?", faq2A: "Tamamen izole sistem.", faq3Q: "Botu nasıl kurarım?", faq3A: "Sadece tokenizi yazın.", footerCopyright: "© 2026 InfraMonitor SaaS.", footerDoc: "Belgeler", footerStatus: "Durum", footerPrivacy: "Gizlilik"
     }
   },
   hi: {
@@ -306,7 +316,8 @@ export const resources = {
         chatIdField: "Chat ID", syncConfig: "सेटिंग्स सिंक", latencyLabel: "लेटेन्सी (ms)", sslValidityLabel: "SSL वैधता",
         days: "दिन", httpStatusLabel: "HTTP स्थिति", targetIdentity: "टारगेट", globalLatency: "लेटेन्सी ग्राफ",
         liveStream: "लाइव", noServiceSelected: "चुना नहीं गया", noServiceDesc: "कृपया एक सर्विस चुनें।",
-        errorAddTarget: "एरर: ", alertConfigSaved: "सेव किया गया।", errorSaveConfig: "एरर: "
+        errorAddTarget: "एरर: ", alertConfigSaved: "सेव किया गया।", errorSaveConfig: "एरर: ",
+        socialProof: "500+ डेवलपर्स का भरोसा", painPointsTitle: "आपको प्रोएक्टिव मॉनिटरिंग की आवश्यकता क्यों है", painPointOld: "पुराना तरीका", painPointNew: "InfraMonitor का तरीका", oldWay1: "नाराज़ ग्राहकों से डाउनटाइम के बारे में पता चलना।", oldWay2: "समस्याओं का इंतजार करते हुए डैशबोर्ड को घूरना।", oldWay3: "घंटों का जटिल सेटअप।", newWay1: "ग्राहकों के जानने से पहले टेलीग्राम के माध्यम से अलर्ट।", newWay2: "ऑटोमेटेड 30-सेकंड पोलिंग।", newWay3: "30 सेकंड में मॉनिटर डिप्लॉय करें।", howItWorksTitle: "3 आसान चरणों में कैसे काम करता है", step1Title: "1. रजिस्टर करें", step1Desc: "एक क्लिक में खाता बनाएं और एक्सेस करें।", step2Title: "2. URL(s) डालें", step2Desc: "अपने एंडपॉइंट और अपेक्षित HTTP स्थिति कॉन्फ़िगर करें।", step3Title: "3. आराम करें", step3Desc: "कुछ टूटने पर हम आपको टेलीग्राम पर सूचित करेंगे।", integrationsTitle: "सहज इंटीग्रेशन", integrationsDesc: "टेलीग्राम के लिए तत्काल सूचनाएं, जल्द ही डिस्कॉर्ड।", faqTitle: "सामान्य प्रश्न", faq1Q: "चेक कितनी बार होते हैं?", faq1A: "सटीक निगरानी के लिए हर 30 सेकंड में।", faq2Q: "मेरा डेटा सुरक्षित है?", faq2A: "हाँ, वास्तुकला सुरक्षित रूप से अलग है।", faq3Q: "टेलीग्राम बॉट कैसे सेट अप करें?", faq3A: "सेटिंग्स में बॉट टोकन पेस्ट करें।", footerCopyright: "© 2026 InfraMonitor SaaS. सभी अधिकार सुरक्षित।", footerDoc: "Documentation", footerStatus: "Status", footerPrivacy: "Privacy"
     }
   },
   it: {
@@ -334,7 +345,8 @@ export const resources = {
         chatIdField: "Chat ID", syncConfig: "Sincronizza", latencyLabel: "Latenza (ms)", sslValidityLabel: "Validità SSL",
         days: "giorni", httpStatusLabel: "Stato HTTP", targetIdentity: "Identità", globalLatency: "Latenza Globale",
         liveStream: "Live", noServiceSelected: "Nessun servizio", noServiceDesc: "Seleziona dal pannello laterale.",
-        errorAddTarget: "Errore: ", alertConfigSaved: "Salvato.", errorSaveConfig: "Errore: "
+        errorAddTarget: "Errore: ", alertConfigSaved: "Salvato.", errorSaveConfig: "Errore: ",
+        socialProof: "Affidabile per oltre 500 sviluppatori", painPointsTitle: "Perché hai bisogno del monitoraggio proattivo", painPointOld: "Il vecchio modo", painPointNew: "Il modo InfraMonitor", oldWay1: "Scoprire i tempi di inattività dai clienti arrabbiati.", oldWay2: "Guardare le dashboard aspettando i problemi.", oldWay3: "Configurazione complessa che richiede ore.", newWay1: "Avvisi istantanei su Telegram prima che i clienti se ne accorgano.", newWay2: "Polling automatico di 30 secondi.", newWay3: "Distribuisci il monitor in 30 secondi.", howItWorksTitle: "Come Funziona in 3 Passaggi", step1Title: "1. Registrazione", step1Desc: "Crea il tuo account in un istante.", step2Title: "2. Aggiungi URL", step2Desc: "Configura i tuoi endpoint e lo stato HTTP.", step3Title: "3. Rilassati", step3Desc: "Ti avviseremo su Telegram per eventuali rotture.", integrationsTitle: "Integrazioni Fluide", integrationsDesc: "Supporto Telegram nativo. Discord e Slack in arrivo.", faqTitle: "Domande Frequenti", faq1Q: "Ogni quanto monitoriamo?", faq1A: "30 secondi con precisione elevata.", faq2Q: "I dati sono al sicuro?", faq2A: "Certo. Costrutto isolato e privato.", faq3Q: "Configurare il Bot Telegram?", faq3A: "Copia il Token e inseriscilo nei Settings.", footerCopyright: "© 2026 InfraMonitor SaaS.", footerDoc: "Docs", footerStatus: "Stato", footerPrivacy: "Privacy"
     }
   },
   ko: {
@@ -362,7 +374,8 @@ export const resources = {
         chatIdField: "Chat ID", syncConfig: "동기화", latencyLabel: "응답시간", sslValidityLabel: "SSL",
         days: "일", httpStatusLabel: "응답 코드", targetIdentity: "타켓 지정 정보", globalLatency: "실시간 글로벌 레이턴시",
         liveStream: "모니터링", noServiceSelected: "항목 선택 없음", noServiceDesc: "항목을 확인해 주세요.",
-        errorAddTarget: "오류: ", alertConfigSaved: "저장 완료.", errorSaveConfig: "오류: "
+        errorAddTarget: "오류: ", alertConfigSaved: "저장 완료.", errorSaveConfig: "오류: ",
+        socialProof: "500명 이상의 개발자가 신뢰함", painPointsTitle: "사전 예방적 모니터링이 필요한 이유", painPointOld: "기존의 방식", painPointNew: "InfraMonitor 방식", oldWay1: "불만을 품은 고객을 통해 다운타임 확인.", oldWay2: "문제를 기다리며 대시보드만 바라보기.", oldWay3: "몇 시간이 걸리는 복잡한 설정.", newWay1: "고객이 눈치채기 전에 Telegram 즉시 알림.", newWay2: "자동화된 30초 간격 폴링.", newWay3: "30초 만에 첫 번째 모니터 배포.", howItWorksTitle: "3개의 간단한 단계 작동 방식", step1Title: "1. 회원가입", step1Desc: "클릭 한 번으로 계정을 생성 및 대시보드 액세스.", step2Title: "2. URL 추가", step2Desc: "엔드포인트 및 예상 HTTP 상태를 구성합니다.", step3Title: "3. 여유 가지기", step3Desc: "오류 발생 시 Telegram으로 즉시 알려드립니다.", integrationsTitle: "원활한 통합", integrationsDesc: "현재 Telegram 즉각 알림을 지원하며 Discord 예정.", faqTitle: "자주 묻는 질문", faq1Q: "검사 주기는 어떻게 됩니까?", faq1A: "30초마다 요청을 보냅니다.", faq2Q: "데이터는 안전한가요?", faq2A: "네, 완전히 격리된 아키텍처를 사용합니다.", faq3Q: "Telegram 봇 설정 방법은?", faq3A: "설정 창에 토큰 및 Chat ID를 붙여넣으세요.", footerCopyright: "© 2026 InfraMonitor SaaS.", footerDoc: "공식 문서", footerStatus: "상태 페이지", footerPrivacy: "개인정보처리방침"
     }
   },
   id: {
@@ -390,7 +403,8 @@ export const resources = {
         chatIdField: "Chat ID", syncConfig: "Singkronisasi", latencyLabel: "Latensi", sslValidityLabel: "SSL",
         days: "hari", httpStatusLabel: "Status Web", targetIdentity: "Identitas Target", globalLatency: "Pola Latensi",
         liveStream: "Langsung", noServiceSelected: "Gagal Pilihan", noServiceDesc: "Silakan pilih salah satu target.",
-        errorAddTarget: "Gagal: ", alertConfigSaved: "Tersimpan", errorSaveConfig: "Gagal: "
+        errorAddTarget: "Gagal: ", alertConfigSaved: "Tersimpan", errorSaveConfig: "Gagal: ",
+        socialProof: "Dipercaya oleh 500+ developer", painPointsTitle: "Mengapa Anda butuh monitoring proaktif", painPointOld: "Cara Lama", painPointNew: "Cara InfaMonitor", oldWay1: "Tahu ada downtime dari keluhan pelanggan.", oldWay2: "Memelototi dashboard menunggu masalah.", oldWay3: "Sistem kompleks makan waktu berjam-jam.", newWay1: "Peringatan instan via Telegram sebelum pelanggan tahu.", newWay2: "Polling otomatis setiap 30 detik.", newWay3: "Deploy monitor dalam waktu 30 detik.", howItWorksTitle: "Cara Kerjanya dalam 3 Langkah Mudah", step1Title: "1. Daftar", step1Desc: "Buat akun sekali jalan saja.", step2Title: "2. Tambahkan URL", step2Desc: "Setup HTTP tujuan pantauan.", step3Title: "3. Santai", step3Desc: "Kami peringatkan lewat telegram jika gagal ping.", integrationsTitle: "Integrasi Praktis", integrationsDesc: "Telah didukung oleh Telegram, sedang persiapan yang lain.", faqTitle: "Tanya Jawab Seputar SaaS", faq1Q: "Seberapa sering kami memeriksa web anda?", faq1A: "Check konstan selama periode 30 detik.", faq2Q: "Apakah privat aman?", faq2A: "Sangat absolut terjaga dan privat.", faq3Q: "Instal Telegram gimana?", faq3A: "Masukkan isian form Telegram disetting.", footerCopyright: "© 2026 InfraMonitor SaaS.", footerDoc: "Panduan", footerStatus: "Status", footerPrivacy: "Privasi"
     }
   }
 };
