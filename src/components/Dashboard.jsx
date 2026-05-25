@@ -6,7 +6,7 @@ import { supabase } from '../supabaseClient';
 import { useTranslation } from 'react-i18next';
 
 export default function Dashboard({ session }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [targets, setTargets] = useState([]);
   const [selectedTarget, setSelectedTarget] = useState(null);
   const [metrics, setMetrics] = useState([]);
@@ -44,7 +44,7 @@ export default function Dashboard({ session }) {
   };
 
   const fetchNotificationConfig = async () => {
-    const { data } = await supabase.from('notification_configs').select('*').eq('user_id', session.user.id).single();
+    const { data } = await supabase.from('notification_configs').select('*').eq('user_id', session.user.id).maybeSingle();
     if (data) {
       setBotToken(data.telegram_bot_token || '');
       setChatId(data.telegram_chat_id || '');
